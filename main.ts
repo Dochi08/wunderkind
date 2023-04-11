@@ -1,5 +1,6 @@
 namespace SpriteKind {
     export const question = SpriteKind.create()
+    export const question2 = SpriteKind.create()
 }
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairNorth, function (sprite, location) {
     questionbox = sprites.create(img`
@@ -20,7 +21,26 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairNorth, function (spr
         . e e e e e e e e e e e e e e . 
         . e e e e e e e e e e e e e e . 
         `, SpriteKind.question)
-    questionbox.setPosition(84, 75)
+    questionbox.setPosition(88, 119)
+    questionbo_x = sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . e e e e e e e e e e e e e e . 
+        . e e e e e e e e e e e e e e . 
+        . e e d d d d d d d d d d e e . 
+        . e e d f d d d f d f d d e e . 
+        . e e f d f d f f f f d d e e . 
+        . e e d f d d d f d d d d e e . 
+        . e e d f f d f d d d d d e e . 
+        . e e e e e e e e e e e e e e . 
+        . e e e e e e e e e e e e e e . 
+        . e e e e e e e e e e e e e e . 
+        . e e e e e e e e e e e e e e . 
+        . e e e e e e e e e e e e e e . 
+        . e e e e e e e e e e e e e e . 
+        . e e e e e e e e e e e e e e . 
+        . e e e e e e e e e e e e e e . 
+        `, SpriteKind.question2)
+    questionbo_x.setPosition(77, 79)
     tiles.setCurrentTilemap(tilemap2[0])
     tiles.placeOnRandomTile(_1st_sprrite, sprites.dungeon.stairSouth)
 })
@@ -29,7 +49,20 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.question, function (sprite, othe
     story.showPlayerChoices("I went down the stairs", "Why do you need to know?")
     game.showLongText("Well, you came here at the right time I guess. ", DialogLayout.Bottom)
     game.showLongText("this is a place that you get your super power", DialogLayout.Bottom)
-    sprites.destroy(questionbox)
+    pause(5000)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.question2, function (sprite, otherSprite) {
+    game.showLongText("CHOOSE YOUR POWER", DialogLayout.Bottom)
+    story.showPlayerChoices("Fire", "Ice", "Earth")
+    if (story.checkLastAnswer("Fire")) {
+        tiles.placeOnRandomTile(_1st_sprrite, sprites.dungeon.collectibleRedCrystal)
+    } else if (story.checkLastAnswer("Ice")) {
+        tiles.placeOnRandomTile(_1st_sprrite, sprites.dungeon.collectibleInsignia)
+    } else if (story.checkLastAnswer("Earth")) {
+        tiles.placeOnRandomTile(_1st_sprrite, sprites.dungeon.collectibleBlueCrystal)
+    } else {
+    	
+    }
 })
 function earthwizard2 () {
     earthwizard = sprites.create(img`
@@ -56,6 +89,8 @@ function earthwizard2 () {
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleBlueCrystal, function (sprite, location) {
     tiles.setCurrentTilemap(tilemap`level13`)
     sprites.destroy(_1st_sprrite)
+    sprites.destroy(questionbo_x)
+    sprites.destroy(questionbox)
     earthwizard2()
 })
 function firewizard2 () {
@@ -105,16 +140,21 @@ function icewizard2 () {
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleRedCrystal, function (sprite, location) {
     tiles.setCurrentTilemap(tilemap`level13`)
     sprites.destroy(_1st_sprrite)
+    sprites.destroy(questionbo_x)
+    sprites.destroy(questionbox)
     firewizard2()
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleInsignia, function (sprite, location) {
     tiles.setCurrentTilemap(tilemap`level13`)
     sprites.destroy(_1st_sprrite)
+    sprites.destroy(questionbo_x)
+    sprites.destroy(questionbox)
     icewizard2()
 })
 let icewizard: Sprite = null
 let firewizard: Sprite = null
 let earthwizard: Sprite = null
+let questionbo_x: Sprite = null
 let questionbox: Sprite = null
 let tilemap2: tiles.TileMapData[] = []
 let _1st_sprrite: Sprite = null
