@@ -21,7 +21,7 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairNorth, function (spr
         . e e e e e e e e e e e e e e . 
         `, SpriteKind.question)
     questionbox.setPosition(84, 75)
-    tiles.setCurrentTilemap(tilemap2[0])
+    tiles.setCurrentTilemap(tilemap`level1`)
     tiles.placeOnRandomTile(_1st_sprrite, sprites.dungeon.stairSouth)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.question, function (sprite, otherSprite) {
@@ -116,7 +116,6 @@ let icewizard: Sprite = null
 let firewizard: Sprite = null
 let earthwizard: Sprite = null
 let questionbox: Sprite = null
-let tilemap2: tiles.TileMapData[] = []
 let _1st_sprrite: Sprite = null
 _1st_sprrite = sprites.create(img`
     . . . . . . f f f f . . . . . . 
@@ -140,4 +139,3 @@ tiles.setCurrentTilemap(tilemap`level13`)
 tiles.placeOnRandomTile(_1st_sprrite, sprites.builtin.forestTiles22)
 scene.cameraFollowSprite(_1st_sprrite)
 controller.moveSprite(_1st_sprrite)
-tilemap2 = [tilemap`level1`]
