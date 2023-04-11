@@ -27,9 +27,9 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairNorth, function (spr
 sprites.onOverlap(SpriteKind.Player, SpriteKind.question, function (sprite, otherSprite) {
     game.showLongText("How did you get here?", DialogLayout.Bottom)
     story.showPlayerChoices("I went down the stairs", "Why do you need to know?")
-    game.showLongText("Well you came here at the right time I guess. ", DialogLayout.Bottom)
+    game.showLongText("Well, you came here at the right time I guess. ", DialogLayout.Bottom)
     game.showLongText("this is a place that you get your super power", DialogLayout.Bottom)
-    pause(2000)
+    sprites.destroy(questionbox)
 })
 function earthwizard2 () {
     earthwizard = sprites.create(img`
