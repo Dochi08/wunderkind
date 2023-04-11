@@ -1,9 +1,9 @@
 namespace SpriteKind {
     export const question = SpriteKind.create()
     export const question2 = SpriteKind.create()
+    export const empoweredPlayer = SpriteKind.create()
 }
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairNorth, function (sprite, location) {
-    pause(5000)
     questionbox = sprites.create(img`
         . . . . . . . . . . . . . . . . 
         . e e e e e e e e e e e e e e . 
@@ -67,8 +67,6 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.question2, function (sprite, oth
         tiles.placeOnRandomTile(_1st_sprrite, sprites.dungeon.collectibleInsignia)
     } else if (story.checkLastAnswer("Earth")) {
         tiles.placeOnRandomTile(_1st_sprrite, sprites.dungeon.collectibleBlueCrystal)
-    } else {
-    	
     }
 })
 function earthwizard2 () {
@@ -89,14 +87,18 @@ function earthwizard2 () {
         . . . . f 7 7 5 5 7 7 f 7 7 . . 
         . . . . . f f f f f f . . . . . 
         . . . . . f f . . f f . . . . . 
-        `, SpriteKind.Player)
-    controller.moveSprite(firewizard)
-    scene.cameraFollowSprite(earthwizard)
+        `, SpriteKind.empoweredPlayer)
+    spriteCreator(earthwizard)
 }
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleBlueCrystal, function (sprite, location) {
     afterPower()
     earthwizard2()
 })
+function spriteCreator (mySprite: Sprite) {
+    controller.moveSprite(mySprite)
+    scene.cameraFollowSprite(mySprite)
+    mySprite.setFlag(SpriteFlag.StayInScreen, true)
+}
 function firewizard2 () {
     firewizard = sprites.create(img`
         . . . . . . f f f f . . . . . . 
@@ -115,9 +117,8 @@ function firewizard2 () {
         . . . . f 2 2 5 5 2 2 f 2 2 . . 
         . . . . . f f f f f f . . . . . 
         . . . . . f f . . f f . . . . . 
-        `, SpriteKind.Player)
-    controller.moveSprite(firewizard)
-    scene.cameraFollowSprite(firewizard)
+        `, SpriteKind.empoweredPlayer)
+    spriteCreator(firewizard)
 }
 function icewizard2 () {
     icewizard = sprites.create(img`
@@ -137,9 +138,8 @@ function icewizard2 () {
         . . . . f 8 8 5 5 8 8 f 9 9 9 . 
         . . . . . f f f f f f . . . 9 9 
         . . . . . f f . . f f . . . . 9 
-        `, SpriteKind.Player)
-    controller.moveSprite(firewizard)
-    scene.cameraFollowSprite(icewizard)
+        `, SpriteKind.empoweredPlayer)
+    spriteCreator(icewizard)
 }
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleRedCrystal, function (sprite, location) {
     afterPower()
