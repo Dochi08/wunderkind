@@ -27,17 +27,12 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairNorth, function (spr
 sprites.onOverlap(SpriteKind.Player, SpriteKind.question, function (sprite, otherSprite) {
     game.showLongText("How did you get here?", DialogLayout.Bottom)
     story.showPlayerChoices("I went down the stairs", "Why do you need to know?")
-    if (story.checkLastAnswer("I went down the stairs")) {
-        game.showLongText("Well you came here at the right timing I guess. ", DialogLayout.Bottom)
-        game.showLongText("this is a place that you get you super power", DialogLayout.Bottom)
-    } else if (story.checkLastAnswer("Why do you need to know?")) {
-    	
-    } else {
-    	
-    }
+    game.showLongText("Well you came here at the right time I guess. ", DialogLayout.Bottom)
+    game.showLongText("this is a place that you get your super power", DialogLayout.Bottom)
+    pause(2000)
 })
-function iceWizard2 () {
-    iceWizard = sprites.create(img`
+function iceWizard () {
+    firewizard = sprites.create(img`
         . . . . . . f f f f . . . . . . 
         . . . . f f f 9 9 f f f . . . . 
         . . . f f f 9 9 9 9 f f f . . . 
@@ -57,7 +52,7 @@ function iceWizard2 () {
         `, SpriteKind.Player)
 }
 function earthWizard () {
-    iceWizard = sprites.create(img`
+    earthwizard = sprites.create(img`
         . . . . . . f f f f . . . . . . 
         . . . . f f f 7 7 f f f . . . . 
         . . . f f f 7 8 8 7 f f f . . . 
@@ -77,7 +72,7 @@ function earthWizard () {
         `, SpriteKind.Player)
 }
 function fireWizard () {
-    iceWizard = sprites.create(img`
+    firewizard = sprites.create(img`
         . . . . . . f f f f . . . . . . 
         . . . . f f f 2 2 f f f . . . . 
         . . . f f f 2 2 2 2 f f f . . . 
@@ -96,7 +91,8 @@ function fireWizard () {
         . . . . . f f . . f f . . . . . 
         `, SpriteKind.Player)
 }
-let iceWizard: Sprite = null
+let earthwizard: Sprite = null
+let firewizard: Sprite = null
 let questionbox: Sprite = null
 let tilemap2: tiles.TileMapData[] = []
 let mySprite: Sprite = null
