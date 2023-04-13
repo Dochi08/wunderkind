@@ -47,13 +47,33 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairNorth, function (spr
 })
 scene.onOverlapTile(SpriteKind.empoweredPlayer, sprites.dungeon.stairNorth, function (sprite, location) {
     game.showLongText("You may no longer enter", DialogLayout.Center)
-    pause(500)
+    pause(2000)
 })
-function afterPower () {
-    tiles.setCurrentTilemap(tilemap`level13`)
+function afterPower (mySprite: Sprite) {
+    tiles.setCurrentTilemap(tilemap2[1])
     sprites.destroy(_1st_sprrite)
     sprites.destroy(questionbo_x)
     sprites.destroy(questionbox)
+    doungenentrence = sprites.create(img`
+        . . . . . . a a a a a . . . . . 
+        . . . . a a a a a a a a . . . . 
+        . . . a a a a a a a a a a a . . 
+        . . a a a e e e e e e a a a . . 
+        . . a a a a a a a a a a e a . . 
+        . . a e a a a a a a a a e a . . 
+        . . a a a a e e e e a a a a . . 
+        . a a e a b a 5 5 a b a e a a . 
+        . a e e 4 1 a d d a 1 5 e e a . 
+        . . a e e d d d d d d e e a . . 
+        . . . a e e 5 5 5 5 e e a . . . 
+        . . e 5 a a a a a a a a 5 e . . 
+        . . 5 d a a a a a a a a d 5 . . 
+        . . 5 5 a 5 5 5 5 5 5 a 5 5 . . 
+        . . . . . a a a a a a a . . . . 
+        . . . . . a a . . a a . . . . . 
+        `, SpriteKind.Player)
+    tiles.placeOnTile(doungenentrence, tiles.getTileLocation(5, 1))
+    tiles.placeOnTile(mySprite, tiles.getTileLocation(5, 9))
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.question, function (sprite, otherSprite) {
     game.showLongText("How did you get here?", DialogLayout.Bottom)
@@ -95,8 +115,8 @@ function earthwizard2 () {
     spriteCreator(earthwizard)
 }
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleBlueCrystal, function (sprite, location) {
-    afterPower()
     earthwizard2()
+    afterPower(earthwizard)
 })
 function spriteCreator (mySprite: Sprite) {
     controller.moveSprite(mySprite)
@@ -146,16 +166,17 @@ function icewizard2 () {
     spriteCreator(icewizard)
 }
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleRedCrystal, function (sprite, location) {
-    afterPower()
     firewizard2()
+    afterPower(firewizard)
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleInsignia, function (sprite, location) {
-    afterPower()
     icewizard2()
+    afterPower(icewizard)
 })
 let icewizard: Sprite = null
 let firewizard: Sprite = null
 let earthwizard: Sprite = null
+let doungenentrence: Sprite = null
 let questionbo_x: Sprite = null
 let questionbox: Sprite = null
 let tilemap2: tiles.TileMapData[] = []
@@ -182,4 +203,4 @@ tiles.setCurrentTilemap(tilemap`level13`)
 tiles.placeOnRandomTile(_1st_sprrite, sprites.builtin.forestTiles22)
 scene.cameraFollowSprite(_1st_sprrite)
 controller.moveSprite(_1st_sprrite)
-tilemap2 = [tilemap`level1`]
+tilemap2 = [tilemap`level1`, tilemap`level13`]
