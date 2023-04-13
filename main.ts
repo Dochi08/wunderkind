@@ -46,7 +46,7 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairNorth, function (spr
     tiles.placeOnRandomTile(_1st_sprrite, sprites.dungeon.stairSouth)
 })
 function afterPower () {
-    tiles.setCurrentTilemap(tilemap`level13`)
+    tiles.setCurrentTilemap(tilemap2[1])
     sprites.destroy(_1st_sprrite)
     sprites.destroy(questionbo_x)
     sprites.destroy(questionbox)
@@ -178,4 +178,4 @@ tiles.setCurrentTilemap(tilemap`level13`)
 tiles.placeOnRandomTile(_1st_sprrite, sprites.builtin.forestTiles22)
 scene.cameraFollowSprite(_1st_sprrite)
 controller.moveSprite(_1st_sprrite)
-tilemap2 = [tilemap`level1`]
+tilemap2 = [tilemap`level1`, tilemap`level23`]
