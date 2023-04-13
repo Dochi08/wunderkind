@@ -45,6 +45,10 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairNorth, function (spr
     tiles.setCurrentTilemap(tilemap2[0])
     tiles.placeOnRandomTile(_1st_sprrite, sprites.dungeon.stairSouth)
 })
+scene.onOverlapTile(SpriteKind.empoweredPlayer, sprites.dungeon.stairNorth, function (sprite, location) {
+    game.showLongText("You may no longer enter", DialogLayout.Center)
+    pause(500)
+})
 function afterPower () {
     tiles.setCurrentTilemap(tilemap`level13`)
     sprites.destroy(_1st_sprrite)
