@@ -49,12 +49,6 @@ scene.onOverlapTile(SpriteKind.empoweredPlayer, sprites.dungeon.stairNorth, func
     game.showLongText("You may no longer enter", DialogLayout.Center)
     pause(500)
 })
-function afterPower () {
-    tiles.setCurrentTilemap(tilemap`level13`)
-    sprites.destroy(_1st_sprrite)
-    sprites.destroy(questionbo_x)
-    sprites.destroy(questionbox)
-}
 sprites.onOverlap(SpriteKind.Player, SpriteKind.question, function (sprite, otherSprite) {
     game.showLongText("How did you get here?", DialogLayout.Bottom)
     story.showPlayerChoices("I went down the stairs", "Why do you need to know?")
@@ -95,8 +89,8 @@ function earthwizard2 () {
     spriteCreator(earthwizard)
 }
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleBlueCrystal, function (sprite, location) {
-    afterPower()
     earthwizard2()
+    afterpower(earthwizard)
 })
 function spriteCreator (mySprite: Sprite) {
     controller.moveSprite(mySprite)
@@ -124,6 +118,32 @@ function firewizard2 () {
         `, SpriteKind.empoweredPlayer)
     spriteCreator(firewizard)
 }
+function afterpower (mySprite: Sprite) {
+    sprites.destroy(_1st_sprrite)
+    sprites.destroy(questionbo_x)
+    sprites.destroy(questionbox)
+    tiles.setCurrentTilemap(tilemap2[1])
+    tiles.placeOnTile(mySprite, tiles.getTileLocation(5, 9))
+    doungenentrence = sprites.create(img`
+        . . . . . . f f f f . . . . . . 
+        . . . . f f f a a f f f . . . . 
+        . . . f f f a a a a f f f . . . 
+        . . f f f a a a a a a a f f . . 
+        . . f f a a a a a a a a a f . . 
+        . . f a a f f f f f f a a f . . 
+        . . f f f f a a a a f f f f . . 
+        . f f a f b f 4 4 f b f a f f . 
+        . f a a 4 1 f d d f 1 4 a a f . 
+        . . f a a d d d d d d a a a . . 
+        . . . f a a 4 4 4 4 a a f . . . 
+        . . 5 5 f a a a a a a f 5 5 . . 
+        . . 5 5 f a a a a a a f 5 5 . . 
+        . . 5 5 f 5 5 5 5 5 5 f 5 5 . . 
+        . . . . . f f f f f f . . . . . 
+        . . . . . f f . . f f . . . . . 
+        `, SpriteKind.Player)
+    tiles.placeOnTile(doungenentrence, tiles.getTileLocation(5, 1))
+}
 function icewizard2 () {
     icewizard = sprites.create(img`
         . . . . . . f f f f . . . . . . 
@@ -146,14 +166,15 @@ function icewizard2 () {
     spriteCreator(icewizard)
 }
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleRedCrystal, function (sprite, location) {
-    afterPower()
     firewizard2()
+    afterpower(firewizard)
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleInsignia, function (sprite, location) {
-    afterPower()
     icewizard2()
+    afterpower(icewizard)
 })
 let icewizard: Sprite = null
+let doungenentrence: Sprite = null
 let firewizard: Sprite = null
 let earthwizard: Sprite = null
 let questionbo_x: Sprite = null
@@ -182,4 +203,4 @@ tiles.setCurrentTilemap(tilemap`level13`)
 tiles.placeOnRandomTile(_1st_sprrite, sprites.builtin.forestTiles22)
 scene.cameraFollowSprite(_1st_sprrite)
 controller.moveSprite(_1st_sprrite)
-tilemap2 = [tilemap`level1`]
+tilemap2 = [tilemap`level1`, tilemap`level13`]
