@@ -104,11 +104,11 @@ function earthwizard2 () {
     spriteCreator(earthwizard)
 }
 sprites.onOverlap(SpriteKind.empoweredPlayer, SpriteKind.Enemy, function (sprite, otherSprite) {
+    color.startFade(color.originalPalette, color.Black, 500)
     tiles.placeOnTile(sprite, tiles.getTileLocation(10, 5))
     tiles.placeOnTile(otherSprite, tiles.getTileLocation(8, 5))
     otherSprite.follow(sprite, 0)
-    color.startFade(color.originalPalette, color.originalPalette)
-    color.setColor(1, color.rgb(255, 255, 255))
+    color.startFade(color.Black, color.originalPalette, 500)
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleBlueCrystal, function (sprite, location) {
     earthwizard2()
