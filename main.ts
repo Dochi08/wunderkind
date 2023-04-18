@@ -71,7 +71,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.question, function (sprite, othe
     game.showLongText("this is a place that you get your super power", DialogLayout.Bottom)
     sprites.destroy(otherSprite)
 })
-function fightScene (mySprite: Sprite) {
+function fightScene(mySprite: Sprite) {
     tiles.placeOnTile(mySprite, tiles.getTileLocation(19, 5))
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.question2, function (sprite, otherSprite) {
@@ -85,7 +85,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.question2, function (sprite, oth
         tiles.placeOnRandomTile(_1st_sprrite, sprites.dungeon.collectibleBlueCrystal)
     }
 })
-function earthwizard2 () {
+function earthwizard2() {
     earthwizard = sprites.create(img`
         . . . . . . f f f f . . . . . . 
         . . . . f f f 7 7 f f f . . . . 
@@ -114,7 +114,7 @@ sprites.onOverlap(SpriteKind.empoweredPlayer, SpriteKind.Enemy, function (sprite
     fightscene12(sprite)
     color.startFade(color.Black, color.originalPalette, 500)
 })
-function fightscene12 (mySprite: Sprite) {
+function fightscene12(mySprite: Sprite) {
     tiles.placeOnTile(mySprite, tiles.getTileLocation(13, 5))
     controller.moveSprite(mySprite, 0, 0)
     tiles.placeOnTile(Firstenemy, tiles.getTileLocation(9, 5))
@@ -124,12 +124,12 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleBlueCrystal, f
     earthwizard2()
     afterpower(earthwizard)
 })
-function spriteCreator (mySprite: Sprite) {
+function spriteCreator(mySprite: Sprite) {
     controller.moveSprite(mySprite)
     scene.cameraFollowSprite(mySprite)
     mySprite.setFlag(SpriteFlag.StayInScreen, true)
 }
-function firewizard2 () {
+function firewizard2() {
     firewizard = sprites.create(img`
         . . . . . . f f f f . . . . . . 
         . . . . f f f 2 2 f f f . . . . 
@@ -150,7 +150,7 @@ function firewizard2 () {
         `, SpriteKind.empoweredPlayer)
     spriteCreator(firewizard)
 }
-function afterpower (mySprite: Sprite) {
+function afterpower(mySprite: Sprite) {
     sprites.destroy(_1st_sprrite)
     sprites.destroy(questionbo_x)
     sprites.destroy(questionbox)
@@ -211,10 +211,10 @@ scene.onOverlapTile(SpriteKind.empoweredPlayer, sprites.dungeon.darkGroundEast, 
     }
     tiles.placeOnTile(Firstenemy, tiles.getTileLocation(9, 5))
 })
-function fireCommanSpell1 () {
+function fireCommanSpell1() {
     animation.runImageAnimation(
-    firewizard,
-    [img`
+        firewizard,
+        [img`
         ......ffff..............
         ....fff22fff............
         ...fff2222fff...........
@@ -239,7 +239,7 @@ function fireCommanSpell1 () {
         ........................
         ........................
         ........................
-        `,img`
+        `, img`
         ..............ff........
         .............f2f........
         ............f222........
@@ -264,7 +264,7 @@ function fireCommanSpell1 () {
         ........................
         ........................
         ........................
-        `,img`
+        `, img`
         ........................
         ..............ff........
         .............f2f........
@@ -289,7 +289,7 @@ function fireCommanSpell1 () {
         ........................
         ........................
         ........................
-        `,img`
+        `, img`
         ...............f........
         .............ff2........
         ............ff2f........
@@ -314,7 +314,7 @@ function fireCommanSpell1 () {
         ........................
         ........................
         ........................
-        `,img`
+        `, img`
         ........................
         ..............ff........
         .............f2f........
@@ -339,7 +339,7 @@ function fireCommanSpell1 () {
         ........................
         ........................
         ........................
-        `,img`
+        `, img`
         ..............ff........
         .............f2f........
         ............f222........
@@ -364,7 +364,7 @@ function fireCommanSpell1 () {
         ........................
         ........................
         ........................
-        `,img`
+        `, img`
         ......ffff..............
         ....fff22fff............
         ...fff2222fff...........
@@ -390,8 +390,8 @@ function fireCommanSpell1 () {
         ........................
         ........................
         `],
-    200,
-    false
+        200,
+        false
     )
     pause(500)
     projectile = sprites.createProjectileFromSprite(img`
@@ -413,7 +413,7 @@ function fireCommanSpell1 () {
         . . . . . . . . . . . . . . . . 
         `, firewizard, -75, 0)
 }
-function icewizard2 () {
+function icewizard2() {
     icewizard = sprites.create(img`
         . . . . . . f f f f . . . . . . 
         . . . . f f f 9 9 f f f . . . . 
@@ -476,9 +476,9 @@ tiles.placeOnRandomTile(_1st_sprrite, sprites.builtin.forestTiles22)
 scene.cameraFollowSprite(_1st_sprrite)
 controller.moveSprite(_1st_sprrite)
 tilemap2 = [
-tilemap`level1`,
-tilemap`level5`,
-tilemap`level13`,
-tilemap`level27`
+    tilemap`level1`,
+    tilemap`level5`,
+    tilemap`level13`,
+    tilemap`level27`
 ]
 numbercounter = 1
