@@ -61,9 +61,6 @@ scene.onOverlapTile(SpriteKind.empoweredPlayer, sprites.dungeon.stairNorth, func
     game.showLongText("You may no longer enter", DialogLayout.Center)
     pause(500)
 })
-controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    fireCommanSpell1()
-})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.question, function (sprite, otherSprite) {
     game.showLongText("How did you get here?", DialogLayout.Bottom)
     story.showPlayerChoices("I went down the stairs", "Why do you need to know?")
@@ -273,6 +270,11 @@ function earthCommonSpell2 () {
         . . . . . . . . . . . . . . . . 
         `, firewizard, -100, 0)
 }
+function spriteController (mySprite: Sprite) {
+    controller.moveSprite(mySprite)
+    scene.cameraFollowSprite(mySprite)
+    mySprite.setFlag(SpriteFlag.StayInScreen, true)
+}
 function fightScene (mySprite: Sprite) {
     tiles.placeOnTile(mySprite, tiles.getTileLocation(19, 5))
 }
@@ -306,7 +308,7 @@ function earthwizard2 () {
         . . . . . f f f f f f . . . . . 
         . . . . . f f . . f f . . . . . 
         `, SpriteKind.empoweredPlayer)
-    spriteCreator(earthwizard)
+    spriteController(earthwizard)
 }
 sprites.onOverlap(SpriteKind.empoweredPlayer, SpriteKind.Enemy, function (sprite, otherSprite) {
     color.startFade(color.originalPalette, color.Black, 500)
@@ -317,13 +319,17 @@ sprites.onOverlap(SpriteKind.empoweredPlayer, SpriteKind.Enemy, function (sprite
     color.startFade(color.Black, color.originalPalette, 500)
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleBlueCrystal, function (sprite, location) {
-    earthwizard2()
+    spriteCreator("abc")
     afterpower(earthwizard)
 })
-function spriteCreator (mySprite: Sprite) {
-    controller.moveSprite(mySprite)
-    scene.cameraFollowSprite(mySprite)
-    mySprite.setFlag(SpriteFlag.StayInScreen, true)
+function spriteCreator (text: string) {
+    if (text == "fire") {
+        firewizard2()
+    } else if (text == "ice") {
+        icewizard2()
+    } else {
+        earthwizard2()
+    }
 }
 function fightscene12 (mySprite: Sprite) {
     tiles.placeOnTile(mySprite, tiles.getTileLocation(13, 5))
@@ -350,7 +356,7 @@ function firewizard2 () {
         . . . . . f f f f f f . . . . . 
         . . . . . f f . . f f . . . . . 
         `, SpriteKind.empoweredPlayer)
-    spriteCreator(firewizard)
+    spriteController(firewizard)
 }
 function afterpower (mySprite: Sprite) {
     sprites.destroy(_1st_sprrite)
@@ -634,14 +640,14 @@ function icewizard2 () {
         . . . . . f f f f f f . . . 9 9 
         . . . . . f f . . f f . . . . 9 
         `, SpriteKind.empoweredPlayer)
-    spriteCreator(icewizard)
+    spriteController(icewizard)
 }
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleRedCrystal, function (sprite, location) {
-    firewizard2()
+    spriteCreator("fire")
     afterpower(firewizard)
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleInsignia, function (sprite, location) {
-    icewizard2()
+    spriteCreator("ice")
     afterpower(icewizard)
 })
 function iceCommonSpell1 () {
