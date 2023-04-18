@@ -43,14 +43,14 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairNorth, function (spr
         . e e e e e e e e e e e e e e . 
         `, SpriteKind.question2)
     questionbo_x.setPosition(95, 79)
-    tiles.setCurrentTilemap(tilemap2[0])
+    tiles.setCurrentTilemap(tilemapList[0])
     tiles.placeOnRandomTile(_1st_sprrite, sprites.dungeon.stairSouth)
 })
 sprites.onOverlap(SpriteKind.empoweredPlayer, SpriteKind.dougenentrence, function (sprite, otherSprite) {
     game.showLongText("Greetings! Do you want to go into the hell of dogends", DialogLayout.Bottom)
     story.showPlayerChoices("Yes I am ready", "Give me some time")
     if (story.checkLastAnswer("Yes I am ready")) {
-        tiles.setCurrentTilemap(tilemap2[3])
+        tiles.setCurrentTilemap(tilemapList[3])
         sprites.destroy(doungenentrence)
         fightScene(sprite)
     } else {
@@ -356,7 +356,7 @@ function afterpower (mySprite: Sprite) {
     sprites.destroy(_1st_sprrite)
     sprites.destroy(questionbo_x)
     sprites.destroy(questionbox)
-    tiles.setCurrentTilemap(tilemap2[2])
+    tiles.setCurrentTilemap(tilemapList[2])
     tiles.placeOnTile(mySprite, tiles.getTileLocation(5, 9))
     doungenentrence = sprites.create(img`
         . . . . . . f f f f . . . . . . 
@@ -857,7 +857,7 @@ let doungenentrence: Sprite = null
 let questionbo_x: Sprite = null
 let questionbox: Sprite = null
 let numbercounter = 0
-let tilemap2: tiles.TileMapData[] = []
+let tilemapList: tiles.TileMapData[] = []
 let _1st_sprrite: Sprite = null
 _1st_sprrite = sprites.create(img`
     . . . . . . f f f f . . . . . . 
@@ -881,7 +881,7 @@ tiles.setCurrentTilemap(tilemap`level5`)
 tiles.placeOnRandomTile(_1st_sprrite, sprites.builtin.forestTiles22)
 scene.cameraFollowSprite(_1st_sprrite)
 controller.moveSprite(_1st_sprrite)
-tilemap2 = [
+tilemapList = [
 tilemap`level1`,
 tilemap`level5`,
 tilemap`level13`,
