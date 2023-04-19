@@ -317,7 +317,20 @@ sprites.onOverlap(SpriteKind.empoweredPlayer, SpriteKind.Enemy, function (sprite
     otherSprite.follow(sprite, 0)
     fightscene12(sprite)
     color.startFade(color.Black, color.originalPalette, 500)
+    pause(450)
+    Addition()
 })
+function Addition () {
+    addition1 = game.askForNumber("3 + 5", 2)
+    if (addition1 == 8) {
+        game.splash("Correct Answer!!")
+        correctcounter += 1
+        pause(200)
+        fireCommanSpell1()
+    } else {
+        game.splash("Wrong Answer!")
+    }
+}
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleBlueCrystal, function (sprite, location) {
     spriteCreator("abc")
     afterpower(earthwizard)
@@ -646,6 +659,11 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleRedCrystal, fu
     spriteCreator("fire")
     afterpower(firewizard)
 })
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
+    sprites.destroy(projectileearth)
+    sprites.destroy(projectilefire)
+    sprites.destroy(projectileice)
+})
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleInsignia, function (sprite, location) {
     spriteCreator("ice")
     afterpower(icewizard)
@@ -856,6 +874,8 @@ let projectileice: Sprite = null
 let icewizard: Sprite = null
 let projectilefire: Sprite = null
 let Firstenemy: Sprite = null
+let correctcounter = 0
+let addition1 = 0
 let firewizard: Sprite = null
 let projectileearth: Sprite = null
 let earthwizard: Sprite = null
