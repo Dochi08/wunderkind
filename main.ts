@@ -99,7 +99,7 @@ sprites.onOverlap(SpriteKind.empoweredPlayer, SpriteKind.dougenentrence, functio
 })
 scene.onOverlapTile(SpriteKind.empoweredPlayer, sprites.dungeon.stairNorth, function (sprite, location) {
     game.showLongText("You may no longer enter", DialogLayout.Center)
-    pause(500)
+    pause(1000)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.question, function (sprite, otherSprite) {
     controller.moveSprite(sprite, 0, 0)
