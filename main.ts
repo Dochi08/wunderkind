@@ -85,39 +85,38 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairNorth, function (spr
     tiles.placeOnRandomTile(_1st_sprrite, sprites.dungeon.stairSouth)
 })
 sprites.onOverlap(SpriteKind.empoweredPlayer, SpriteKind.dougenentrence, function (sprite, otherSprite) {
+    controller.moveSprite(sprite, 0, 0)
     game.showLongText("Greetings! Do you want to go into the hell of dogends", DialogLayout.Bottom)
     story.showPlayerChoices("Yes I am ready", "Give me some time")
     if (story.checkLastAnswer("Yes I am ready")) {
         tiles.setCurrentTilemap(tilemap2[3])
         sprites.destroy(doungenentrence)
-        fightScene(sprite)
+        tiles.placeOnTile(sprite, tiles.getTileLocation(19, 5))
     } else {
         game.showLongText("Okay have some time then", DialogLayout.Center)
     }
+    controller.moveSprite(sprite, 100, 100)
 })
-// Code written by Nate Au.
 scene.onOverlapTile(SpriteKind.empoweredPlayer, sprites.dungeon.stairNorth, function (sprite, location) {
     game.showLongText("You may no longer enter", DialogLayout.Center)
     pause(500)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.question, function (sprite, otherSprite) {
+    controller.moveSprite(sprite, 0, 0)
     game.showLongText("How did you get here?", DialogLayout.Bottom)
     story.showPlayerChoices("I went down the stairs", "Why do you need to know?")
     game.showLongText("Well, you came here at the right time I guess. ", DialogLayout.Bottom)
     game.showLongText("this is a place that you get your super power", DialogLayout.Bottom)
     sprites.destroy(otherSprite)
+    controller.moveSprite(sprite, 100, 100)
 })
-// Code written by Nate Au.
 function spriteController (mySprite: Sprite) {
     controller.moveSprite(mySprite)
     scene.cameraFollowSprite(mySprite)
     mySprite.setFlag(SpriteFlag.StayInScreen, true)
 }
-// Code written by Nate Au.
-function fightScene (mySprite: Sprite) {
-    tiles.placeOnTile(mySprite, tiles.getTileLocation(19, 5))
-}
 sprites.onOverlap(SpriteKind.Player, SpriteKind.question2, function (sprite, otherSprite) {
+    controller.moveSprite(sprite, 0, 0)
     game.showLongText("CHOOSE YOUR POWER", DialogLayout.Bottom)
     story.showPlayerChoices("Fire", "Ice", "Earth")
     if (story.checkLastAnswer("Fire")) {
@@ -127,6 +126,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.question2, function (sprite, oth
     } else if (story.checkLastAnswer("Earth")) {
         tiles.placeOnRandomTile(_1st_sprrite, sprites.dungeon.collectibleBlueCrystal)
     }
+    controller.moveSprite(sprite, 100, 100)
 })
 function earthwizard2 () {
     earthwizard = sprites.create(img`
@@ -150,7 +150,6 @@ function earthwizard2 () {
     spriteController(earthwizard)
     spritetype = "earth"
 }
-// Code written by Nate Au.
 sprites.onOverlap(SpriteKind.empoweredPlayer, SpriteKind.Enemy, function (sprite, otherSprite) {
     color.startFade(color.originalPalette, color.Black, 500)
     tiles.placeOnTile(sprite, tiles.getTileLocation(10, 5))
@@ -460,7 +459,6 @@ function QuizAddition (num1: number, num2: number) {
         game.splash("Wrong Answer!")
     }
 }
-// Code written by Nate Au.
 function afterpower (mySprite: Sprite) {
     sprites.destroy(_1st_sprrite)
     sprites.destroy(questionbo_x)
@@ -1003,7 +1001,7 @@ _1st_sprrite = sprites.create(img`
 tiles.setCurrentTilemap(tilemap`level5`)
 tiles.placeOnRandomTile(_1st_sprrite, sprites.builtin.forestTiles22)
 scene.cameraFollowSprite(_1st_sprrite)
-controller.moveSprite(_1st_sprrite)
+controller.moveSprite(_1st_sprrite, 100, 100)
 tilemap2 = [
 tilemap`level1`,
 tilemap`level5`,
