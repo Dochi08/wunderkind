@@ -160,16 +160,14 @@ sprites.onOverlap(SpriteKind.empoweredPlayer, SpriteKind.Enemy, function (sprite
     statusbarMysprite.value = 100
     statusbarMysprite.attachToSprite(firewizard)
     statusbarFirstEnemy = statusbars.create(20, 4, StatusBarKind.Health)
-    statusbarFirstEnemy.value = 100
+    statusbarFirstEnemy.value = 40
     statusbarFirstEnemy.attachToSprite(Firstenemy)
     color.startFade(color.Black, color.originalPalette, 500)
     pause(450)
-    while (0 < statusbarFirstEnemy.value) {
-        if (correctcounter <= 2) {
-            QuizAddition(randint(1, 10), randint(1, 10))
-        } else {
-            QuizSubstraction(randint(10, 20), randint(1, 10))
-        }
+    if (correctcounter <= 2) {
+        QuizAddition(randint(1, 10), randint(1, 10))
+    } else {
+        QuizSubstraction(randint(10, 20), randint(1, 10))
     }
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleBlueCrystal, function (sprite, location) {
@@ -452,7 +450,6 @@ function QuizAddition (num1: number, num2: number) {
                     . . . . . . . . . . . . . . . . 
                     `, Firstenemy, 0, -50)
                 pause(500)
-                statusbarFirstEnemy.value += -20
             }
             pause(250)
             correctcounter += 1
